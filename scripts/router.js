@@ -35,4 +35,39 @@ router.setState = function() {
    *    1. You may add as many helper functions in this file as you like
    *    2. You may modify the parameters of setState() as much as you like
    */
+
+    // document.querySelectorAll('journal-entry').forEach(entry => {
+    
+    // });
+    if (arguments[0] == "#settings") {
+      //console.log('true')
+      location.hash = "settings"
+      var body = document.querySelector('body');
+      body.className = "settings";
+      body.querySelector('h1').innerHTML = "Settings";
+    }
+
+    if (arguments[0] == '') {
+      history.replaceState(null, null, ' ');
+      var body = document.querySelector('body');
+      body.className = "";
+      body.querySelector('h1').innerHTML = "Journal Entries";
+    }
+    //console.log(arguments);
+    if (typeof(arguments[0]) != typeof('')) {
+      //console.log('success')
+      //console.log(arguments[1])
+      location.hash = 'entry' + arguments[1];
+      //console.log(location.hash)
+      var elem = document.querySelector('entry-page');
+      elem.parentNode.removeChild(elem);
+      //document.querySelector('body').remove(document.querySelector('entry-page'));
+      document.querySelector('body').appendChild(document.createElement('entry-page'));
+      var body = document.querySelector('body');
+      body.className = "single-entry";
+      //console.log(arguments[0]);
+      document.querySelector('entry-page').entry = arguments[0].entry;
+      body.querySelector('h1').innerHTML = "Entry " + arguments[1];
+    }
+
 }
