@@ -4,39 +4,39 @@
 //   - One for installation
 //   - One for activation ( check out MDN's clients.claim() for this step )
 //   - One for fetch requests
-var CACHE_NAME = 'my-site-cache-v1';
-var urlsToCache = [
-  '/',
-  '/style.css',
-  '/scripts/router.js',
-  '/scripts/script.js'
-];
+// var CACHE_NAME = 'my-site-cache-v1';
+// var urlsToCache = [
+//   '/',
+//   '/style.css',
+//   '/scripts/router.js',
+//   '/scripts/script.js'
+// ];
 
-self.addEventListener('install', function(event) {
-    // Perform install steps
-    event.waitUntil(
-      caches.open(CACHE_NAME)
-        .then(function(cache) {
-          console.log('Opened cache');
-          return cache.addAll(urlsToCache);
-        })
-    );
-  });
+// self.addEventListener('install', function(event) {
+//     // Perform install steps
+//     event.waitUntil(
+//       caches.open(CACHE_NAME)
+//         .then(function(cache) {
+//           console.log('Opened cache');
+//           return cache.addAll(urlsToCache);
+//         })
+//     );
+//   });
 
-  self.addEventListener('fetch', function(event) {
-    event.respondWith(
-      caches.match(event.request)
-        .then(function(response) {
-          // Cache hit - return response
-          if (response) {
-            return response;
-          }
-          return fetch(event.request);
-        }
-      )
-    );
-  });
+//   self.addEventListener('fetch', function(event) {
+//     event.respondWith(
+//       caches.match(event.request)
+//         .then(function(response) {
+//           // Cache hit - return response
+//           if (response) {
+//             return response;
+//           }
+//           return fetch(event.request);
+//         }
+//       )
+//     );
+//   });
 
-self.addEventListener('activate', event => {
-    event.waitUntil(clients.claim());
-});
+// self.addEventListener('activate', event => {
+//     event.waitUntil(clients.claim());
+// });
